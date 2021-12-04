@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% for question in question %}
+<section class="page-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="post post-single">
+					<h2 class="post-title">{{question.question}}</hh2>
+						<div class="post-meta">
+							<ul>
+								<li>
+									<i class="ion-calendar"></i> {{question.added_date}}
+								</li>
+								{% if question.user %}
+								<li>
+									<i class="ion-android-people"></i> {{question.user.username}}
+								</li>
+								{% endif %}
+
+								<li>
+									<a href="{% url 'category_question' cat_id=question.category.id %}"><i
+											class="ion-pricetags"></i> {{question.category.title}}</a></a>
+
+							</ul>
+						</div>
+						{% if user.is_authenticated %}
+						{% for object in answer %}
+						<div class="post-thumb">
+							<img class="img-responsive posted-img" src="{{object.user_profile.profile_picture.url}}" width="50px" style="border-radius: 50%;" alt="">
+						</div>
+						<div class="post-content post-excerpt">
+
+							
+							<img class="img-responsive posted-img" src="" alt="">
+
+							<blockquote class="quote-post">
+								<p>
+									{{object.answer1}}<br>
+									<h5><b>Uploaded BY</b></h5> <h6>{{object.user_profile.user}}</h6>
+
+
+
+
+
+
+
+								</p>
+								<div ><h5><b>comments:</b></h5>
+									{% for comments in comment %}
+										{% if comments.answer_id == object.answer1.id %}
+											<h6><i>{{comments.comments}}</i></h6>
+										{% endif %}
+
+
+									{% endfor %}
+								</div>	
+								{% comment %} {% for object2 in comment %}
+
+								{% for comments in object2.allcomments %}
+
+								{% if object2.answer.id == comments.answer_id %}
+								{{comments.comments}}
+								{% endif %}
+
+
+
+
+
+								{% endfor %}
+								<br>
+
+
+
+
+
+								{% endfor %} {% endcomment %}
+							</blockquote>
+							
+	<section class="contact-form">
+		<div class="container">
+			<div class="row">
+				<form id="contact-form" action="{% url 'comment_save' %}" method="POST">
+					{%csrf_token%}
+					<div class="col-md-6 col-sm-12">
+						<div class="block">
+							<div class="form-group">
+								<input type="hidden" class="form-control" name="answer_id" value={{object.answer1.id}}>
+								<input type="hidden" class="form-control" name="que_id" value={{question.id}}>
+								<input type="hidden" class="form-control" name="user_id" value={{user.id}}>
+								<label for="comment">Enter your comment</label>
+								<input name="comment" type="text" class="form-control" placeholder="Enter comment">
+							</div>
+							<label for="image"></label>
+
+							<div class="block">
+
+								<button class="btn btn-default" type="submit">Upload your comment</button>
+
+							</div>
+
+						</div>
+					</div>
+
+
+				</form>
+			</div>
+
+		</div>
+	</section>
+
+
+
+
+
+							{% endfor %}
+
+
+
+
+
+						</div>
+						{% else %}
+						<br>
+						<br>
+				    <div class="col-md-6 col-sm-12">
+
+				    	<div class="block" >
+
+				    		<button style="padding:5px 30px;background-color: rgb(101,94,122);" class="btn btn-default"> <a style="color: #fff;" href="{% url 'login' %}">Login</a></button>
+							First to see the answer.
+				    	</div>
+					</div>	
+						{% endif %}
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endfor %}
+
+{% endblock %}

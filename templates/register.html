@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block content %}
+{% comment %} This is register page
+
+<form action="register" method="POST" >
+   {%csrf_token%} 
+
+<label for="first_name">Enter Your Name</label>
+<input type="text" name="first_name"><br><br>
+
+<label for="last_name">Enter Your Last name</label>
+<input type="text" name="last_name"><br><br>
+
+<label for="username">Enter Your user name</label>
+<input type="text" name="username"><br><br>
+
+<label for="password1">Enter password</label>
+<input type="password" name="password1"><br><br>
+
+<label for="last_name">Enter Your Last name</label>
+<input type="password" name="password2"><br><br>
+
+<input type="submit"><br><br>
+
+</form><br><br>
+
+
+<br><br> {% endcomment %}
+
+
+
+
+<section class="contact-form">
+   <div class="container">
+       <div class="row">
+           <form id="contact-form" action="register" method="POST" >
+           {%csrf_token%} 
+               <div class="col-md-6 col-sm-12">
+                   <div class="block">
+                       <div class="form-group">
+                           <input name="first_name" type="text" class="form-control" placeholder="Your Name">
+                       </div>
+                       <div class="form-group">
+                           <input name="last_name" type="text" class="form-control" placeholder="Your Last Name">
+                       </div>
+                       <div class="form-group">
+                           <input name="username" type="text" class="form-control" placeholder="Username">
+                       </div>
+                       <div class="form-group">
+                           <input name="password1" type="text" class="form-control" placeholder="Password">
+                       </div>
+                       <div class="form-group">
+                           <input name="password2" type="text" class="form-control" placeholder="ReEnter your password">
+                       </div>
+                   </div>
+               </div>
+               <div class="col-md-6 col-sm-12">
+                   <div class="block">
+                       
+                       <button class="btn btn-default" type="submit">Register</button>
+                       
+                   </div>
+                   <br>
+                   <div class="block">
+                       
+                       <button class="btn btn-default" > <a href="{% url 'login' %}">Login</a></button>
+                      
+                   </div>
+
+               </div>
+               
+           </form>
+       </div>
+       
+   </div>
+</section>
+
+{% endblock %}

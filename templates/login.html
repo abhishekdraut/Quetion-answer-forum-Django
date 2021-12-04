@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+    {% block content %}
+
+<br>
+    <section class="contact-form">
+       <div class="container">
+           <div class="row">
+               <form id="contact-form" action="login" method="POST" >
+               {%csrf_token%} 
+                   <div class="col-md-6 col-sm-12">
+                       <div class="block">
+                           <div class="form-group">
+                           <label for="username">Enter your username</label>
+                               <input name="username" type="text" class="form-control" placeholder="Enter username">
+                           </div>
+                           <label for="username">Enter your password</label>
+                           <div class="form-group">
+                               <input name="password" type="password" class="form-control" placeholder="Enter your password">
+                           </div>
+                          
+                       </div>
+                   </div>
+                   <div class="col-md-6 col-sm-12">
+                       <br>
+                       <br>
+                       <br>
+                       <div class="block">
+                           
+                           <button class="btn btn-default" type="submit">Login</button>
+                           
+                       </div>
+                       <br>
+                       <br>
+                       
+    
+                   </div>
+                   </div>
+                   
+               </form>
+               <div style="border: 1px solid ;border-radius:5px;width: fit-content;padding:5px;background-color:rgba(71, 66, 76, 0.973)">       
+                <a style="color:#fff"href="{% url 'register' %}" >Not Create acount yet. Then Register yourself</a>
+              </div>
+        </div>
+         
+       </div>
+    </section>
+
+    
+    
+    
+    
+    {% endblock %}    

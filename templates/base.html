@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+  <!--<![endif]-->
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="Aviato E-Commerce Template" />
+
+    <meta name="author" content="Themefisher.com" />
+
+    <title>Airspace | Creative Agency Bootstrap template</title>
+
+    <!-- Mobile Specific Meta-->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="{% static 'img/favicon.png' %}"
+    />
+    <!-- bootstrap.min css -->
+    <link
+      rel="stylesheet"
+      href="{% static 'plugins/bootstrap/bootstrap.min.css' %}"
+    />
+    <!-- Ionic Icon Css -->
+    <link
+      rel="stylesheet"
+      href="{% static 'plugins/Ionicons/css/ionicons.min.css' %}"
+    />
+    <!-- animate.css -->
+    <link
+      rel="stylesheet"
+      href="{% static 'plugins/animate-css/animate.css' %}"
+    />
+    <!-- Magnify Popup -->
+    <link
+      rel="stylesheet"
+      href="{% static 'plugins/magnific-popup/magnific-popup.css' %}"
+    />
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="{% static 'plugins/slick/slick.css' %}" />
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+
+  <body id="body">
+    <!-- Header Start -->
+    <header class="navigation">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- header Nav Start -->
+            <nav class="navbar">
+              <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button
+                    type="button"
+                    class="navbar-toggle collapsed"
+                    data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1"
+                  >
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="home">
+                    <span style="font-size:25px">Logo</span>
+                  </a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div
+                  class="collapse navbar-collapse"
+                  id="bs-example-navbar-collapse-1"
+                >
+                  <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{% url 'home_page' %}">Home</a></li>
+                    <li class="dropdown">
+                      <a
+                        href="#"
+                        class="dropdown-toggle"
+                        data-toggle="dropdown"
+                        role="button"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        >Categaries <span class="ion-ios-arrow-down"></span
+                      ></a>
+                      <ul class="dropdown-menu">
+                        {% for category in categories %}
+                        <li><a href="{% url 'category_question' cat_id=category.id %}">{{category.title}}</a></li>
+                        {% endfor %}
+                      </ul>
+                    </li>
+                      {% if user.is_authenticated  %}
+                      <li><a href="#">Hello  {{user.username}}</a></li>
+                      <li><a href="{% url 'logout' %}">Logout</a></li>
+                      {% else %}
+                      <li><a href="{% url 'login' %}">Login/register</a></li>
+                      {% endif %}
+
+                    
+                    
+                  </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+              </div>
+              <!-- /.container-fluid -->
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- header close -->
+    {% block content %} 
+    
+    
+    
+    
+    {% endblock %}
+
+    
+
+    <!-- footer Start -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="footer-manu">
+              <ul>
+                {% for category in categories %}
+                <li><a href="#">{{category.title|title}}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- 
+    Essential Scripts
+    =====================================-->
+    <!-- Main jQuery -->
+    <script src="{% static 'plugins/jQuery/jquery.min.js' %}"></script>
+    <script src="{% static 'plugins/bootstrap/bootstrap.min.js' %}"></script>
+  </body>
+</html>

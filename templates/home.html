@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section class="slider">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="block">
+					<h1 class="animated fadeInUp">A Question Answers <br>Forum For EveryOne</h1>
+					<p class="animated fadeInUp">Ask a question and get helpful answers </br>  Answer questions and share your knowledge with the world</p>
+					{% if user.is_authenticated%}
+          <div class="empty_container"></div>
+          {% else %}
+          <a href="login" target="_blank" class="btn btn-main animated fadeInUp" >Login Now </a>
+          {% endif %}
+          
+          
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<div class="page-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <aside class="sidebar">
+              <!-- Widget Category -->
+              <div class="widget widget-category">
+                <h4 class="widget-title">All Categories</h4>
+                <ul class="widget-category-list">
+                  {% for category in all %}
+                  <li><a href="{% url 'category_question' cat_id=category.id%}">{{category.title}}</a></li>
+                  
+                  {% endfor %}
+                  
+                  
+                </ul>
+              </div>
+              <!-- End category  -->
+            </aside>
+          </div>
+          {% for question in home_questions %}
+          <div class="col-md-4">
+            
+          </div>
+          <div class="col-md-8">
+            <div class="post">
+              <div class="post-media post-thumb">
+                <a href="blog-single.html">
+                  <img src="images/blog/blog-post-1.jpg" alt="" />
+                </a>
+              </div>
+              <h3 class="post-title">
+                <a href="{% url 'questions_ref' que_id=question.id %}" >{{question.question}}</a>
+              </h3>
+              <div class="post-meta">
+                <ul>
+                  <li><i class="ion-calendar"></i> {{question.added_date}}</li>
+                  <li><i class="ion-android-people"></i> {{question.user}}</li>
+                  <li>
+                    <a href=""><i class="ion-pricetags"></i> {{question.category}}</a>,<a
+                      href=""
+                    >
+                      {{question.category}}</a
+                    >, <a href="">{{question.category}}</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="post-content">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Velit vitae placeat ad architecto nostrum asperiores vel
+                  aperiam, veniam eum nulla. Maxime cum magnam, adipisci
+                  architecto quibusdam cumque veniam fugiat quae. Lorem ipsum
+                  dolor sit amet, consectetur adipisicing elit. Odio vitae ab
+                  doloremque accusamus sit, eos dolorum officiis a perspiciatis
+                  aliquid. Lorem ipsum dolor sit amet, consectetur adipisicing
+                  elit. Quod, facere.
+                </p>
+                <a href="{% url 'questions_ref' que_id=question.id %}" class="btn btn-main"
+                  >Continue Reading</a
+                >
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          
+        </div>
+      </div>
+    </div>
+{% endblock %}
